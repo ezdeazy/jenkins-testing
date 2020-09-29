@@ -1,23 +1,20 @@
 pipeline {
-  // Assign to docker slave(s) label, could also be 'any'
-  agent {
-    label 'docker' 
-  }
-
-  stages {
-    stage('build') {
-      agent {
-        docker {
-          // Set both label and image
-          label 'docker'
-          image 'node:7-alpine'
-          args '--name docker-node' // list any args
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'echo hello world'
+            }
         }
-      }
-      steps {
-        // Steps run in node:7-alpine docker container on docker slave
-        sh 'node --version'
-      }
+        stage('Test') { 
+            steps {
+                // 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                // 
+            }
+        }
     }
-  }
-} 
+}
